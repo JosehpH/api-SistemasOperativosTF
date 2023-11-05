@@ -1,11 +1,11 @@
 import { AuthenticateAccountCommandHandler } from './application/handlers/commands/AuthenticateAccountCommandHandler';
 /* eslint-disable prettier/prettier */
 import { CreateAccountHandler } from './application/handlers/commands/create-account.handler';
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserRepository } from './infraestructure/persitence/repositories/UserRepository';
 import { IUserRepository } from './domain/repositories/IUserRepository';
-import { CommandBus, CqrsModule, QueryBus } from '@nestjs/cqrs';
+import { CqrsModule } from '@nestjs/cqrs';
 import { SendMessageWelcomeHandler } from './application/handlers/commands/SendMessageWelcomeHandler';
 import { AccountCreatedHandler } from './application/handlers/events/AccountCreatedHandler';
 import { GetAccountByEmailHandler } from './application/handlers/queries/GetAccountByEmailHandler';
@@ -20,6 +20,7 @@ export const CommandHandlers = [
 export const EventHandlers = [AccountCreatedHandler];
 export const QueryHandlers = [GetAccountByEmailHandler];
 
+@Global()
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: UserEntity.name, schema: UserSchema }]),
@@ -31,6 +32,8 @@ export const QueryHandlers = [GetAccountByEmailHandler];
     ...CommandHandlers,
     ...EventHandlers,
     ...QueryHandlers,
+    UserEntity
   ],
-})
+  exports: [MongooseModule.forFeature([{ name: UserEntity.name, schema: UserSchema }])
+],})
 export class AuthModule {}

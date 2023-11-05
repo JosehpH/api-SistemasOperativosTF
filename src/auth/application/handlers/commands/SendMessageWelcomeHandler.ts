@@ -16,7 +16,6 @@ export class SendMessageWelcomeHandler implements ICommandHandler<SendMessageWel
             pass: 'vuza mdvz nwdd meqw',
           },
         });
-        
         transporter.verify().then(() => {
             Logger.log('Ready for send messages');
         }).catch((error) => { 

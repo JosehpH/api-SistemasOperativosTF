@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { StateAnime } from '../../../../shared/model/values/StateAnime';
-import { CategoriesAnime } from '../../../../shared/model/values/CategoriesAnime';
+import { StateAnime } from '../../../../shared/values/StateAnime';
+import { CategoriesAnime } from '../../../../shared/values/CategoriesAnime';
 import { AnimeEntity } from './AnimeEntity';
 import mongoose, { HydratedDocument } from 'mongoose';
 

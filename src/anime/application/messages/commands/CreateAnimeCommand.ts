@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { StateAnime } from '../../../../shared/model/values/StateAnime';
+import { StateAnime } from '../../../../shared/values/StateAnime';
 export class CreateAnimeCommand {
   constructor(
     public readonly title: string,

@@ -1,18 +1,20 @@
-import { CommandBus } from '@nestjs/cqrs';
-import { QueryBus } from '@nestjs/cqrs';
 import { Module } from '@nestjs/common';
 import { AnimeModule } from './anime/anime.module';
-import { ProfilesModule } from './profiles/profiles.module';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserController } from './auth/interfaces/rest/user/user.controller';
-
+import { CommentsModule } from './comments/comments.module';
+import { NotificationsModule } from './notifications/notifications.module';
+import { ReportsModule } from './reports/reports.module';
+import { UserModule } from './user/user.module';
 @Module({
   imports: [
     AnimeModule,
-    ProfilesModule,
     AuthModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/livebi'),
+    NotificationsModule,
+    ReportsModule,
+    MongooseModule.forRoot('mongodb://20.84.93.253:27017/livebi'),
+    CommentsModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],

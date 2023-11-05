@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { ModelBase } from "src/shared/model/entity/ModelBase";
+import { ModelBase } from "src/shared/entity/ModelBase";
 import { HydratedDocument } from 'mongoose';
 
 export type AnimeDocument = HydratedDocument<AnimeEntity>;

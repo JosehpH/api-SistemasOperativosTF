@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
-import { CategoriesAnime } from "src/shared/model/values/CategoriesAnime";
-import { StateAnime } from "src/shared/model/values/StateAnime";
+import { CategoriesAnime } from "src/shared/values/CategoriesAnime";
+import { StateAnime } from "src/shared/values/StateAnime";
 export class CreateProfileAnimeCommand{
     constructor(
         public readonly animeId: string,

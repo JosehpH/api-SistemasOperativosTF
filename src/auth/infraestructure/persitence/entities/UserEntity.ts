@@ -1,10 +1,12 @@
 /* eslint-disable prettier/prettier */
+import { Injectable } from '@nestjs/common';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { ModelBase } from 'src/shared/model/entity/ModelBase';
+import { ModelBase } from 'src/shared/entity/ModelBase';
 
 export type UserDocument = HydratedDocument<UserEntity>;
 
+@Injectable()
 @Schema({collection: "users"})
 export class UserEntity extends ModelBase {
   @Prop({required: true, unique: true,type: String})

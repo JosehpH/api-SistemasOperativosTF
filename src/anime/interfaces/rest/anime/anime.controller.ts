@@ -4,13 +4,13 @@ import { Controller } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateAnimeDto } from 'src/anime/application/dtos/CreateAnimeDto';
 import { AnimeService } from 'src/anime/application/services/anime/anime.service';
-import { CategoriesAnime } from 'src/shared/model/values/CategoriesAnime';
-import { StateAnime } from 'src/shared/model/values/StateAnime';
+import { CategoriesAnime } from 'src/shared/values/CategoriesAnime';
+import { StateAnime } from 'src/shared/values/StateAnime';
 
 const statesValues = Object.values(StateAnime).join(', ');
 const categoriesValues = Object.values(CategoriesAnime).join(', ');
 @Controller('anime')
-@ApiTags('anime')
+@ApiTags('Anime')
 export class AnimeController {
   constructor(private animeService: AnimeService) {}
 

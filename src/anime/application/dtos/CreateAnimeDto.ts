@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { CategoriesAnime } from 'src/shared/model/values/CategoriesAnime';
-import { StateAnime } from 'src/shared/model/values/StateAnime';
+import { CategoriesAnime } from 'src/shared/values/CategoriesAnime';
+import { StateAnime } from 'src/shared/values/StateAnime';
 import { IsEnum, IsArray } from 'class-validator';
 
 const fechaActual = new Date();
