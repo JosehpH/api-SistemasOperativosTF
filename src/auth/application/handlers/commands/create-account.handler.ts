@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Inject, Logger } from '@nestjs/common';
-import { CommandHandler, EventBus, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
+import { Inject } from '@nestjs/common';
+import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { User } from 'src/auth/domain/aggregates/User';
 import { CreateAccountCommand } from 'src/auth/application/messages/commands/CreateAccountCommand';
 import { AccountCreatedEvent } from 'src/auth/domain/events/AccountCreatedEvent';
@@ -18,7 +18,7 @@ export class CreateAccountHandler implements ICommandHandler<CreateAccountComman
             if (user == null) throw new Error('User not created');
             this.publisher.publish(new AccountCreatedEvent(user.email));
         } catch (error) {
-            throw new Error(`User not created ${error.toString()}}`);
+            throw new Error(`User not created ${error.toString()}`);
         }
         return user;
     }

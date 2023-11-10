@@ -4,4 +4,5 @@ export interface IAnimeFollowedsRepository {
     addAnimeToFolloweds(idAnime: string, idUser: string);
     removeAnimeFromFolloweds(idAnime: string, idUser: string);
     getAllAnimesByUserId(idUser: string);
+    getUsersByAnimeId(idAnime: string);
 }

@@ -14,6 +14,6 @@ export class AddAnimeToFavoritesCommandHandler
   ) {}
   execute(command: AddAnimeToFavorites){
       const { userId, animeId } = command;
-      return this.repository.addAnimeToFavorites(userId, animeId);
+      return this.repository.addAnimeToFavorites(animeId, userId);
   }
 }

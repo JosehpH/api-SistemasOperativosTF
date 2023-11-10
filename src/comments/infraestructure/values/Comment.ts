@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { Prop } from "@nestjs/mongoose";
+import { Types } from "mongoose";
 import { UserEntity } from "src/auth/infraestructure/persitence/entities/UserEntity";
 
 export class CommentEntity {
     @Prop({type: UserEntity, required: true})
-    user: UserEntity
+    user: Types.ObjectId;
     @Prop({type: String, required: true})
     text: string;
     @Prop({type: String})

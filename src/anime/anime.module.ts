@@ -33,6 +33,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { AnimeService } from './application/services/anime/anime.service';
 import { EpisodeService } from './application/services/episode/episode.service';
 import { AnimeProfileService } from './application/services/anime-profile/anime-profile.service';
+import { NotificationsModule } from 'src/notifications/notifications.module';
 
 const QueriesHandlers = [
   GetAnimeByIdQueryHandler,
@@ -45,6 +46,7 @@ const CommandsHandlers = [
   CreateAnimeCommandHandler,
   CreateEpisodeCommandHandler,
   CreateProfileAnimeCommandHandler,
+  EpisodeAddedEventHandler,
 ];
 const EventHandlers = [EpisodeAddedEventHandler];
 const Services = [AnimeService, EpisodeService, AnimeProfileService];
@@ -56,6 +58,7 @@ const Services = [AnimeService, EpisodeService, AnimeProfileService];
       { name: EpisodeEntity.name, schema: EpisodeSchema },
     ]),
     CqrsModule,
+    NotificationsModule,
   ],
   controllers: [AnimeController, AnimeProfileController, EpisodeController],
   providers: [

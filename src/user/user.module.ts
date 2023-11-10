@@ -48,6 +48,7 @@ import { HistoryAnimeService } from './application/services/history-anime/histor
 import { FollowedAnimeService } from './application/services/followed-anime/followed-anime.service';
 import { ListsReproductionAnimeService } from './application/services/lists-reproduction-anime/lists-reproduction-anime.service';
 import { CqrsModule } from '@nestjs/cqrs';
+import { GetUsersByAnimeIdQueryHandler } from './application/handlers/queries/GetUsersByAnimeIdQueryHandler';
 
 const commandHandlers = [
   AddAnimeToFavoritesCommandHandler,
@@ -69,6 +70,7 @@ const queryHandlers = [
   GetAnimeFollowedsByUserIdQueryHandler,
   GetHistoryAnimeByUserIdQueryHandler,
   GetUserProfileUserIdQueryHandler,
+  GetUsersByAnimeIdQueryHandler
 ];
 const eventHandlers = [];
 @Module({
@@ -85,7 +87,7 @@ const eventHandlers = [];
       { name: HistoryAnimeEntity.name, schema: HistoryAnimeSchema },
     ]),
     AuthModule,
-    CqrsModule
+    CqrsModule,
   ],
   controllers: [
     ListsReproductionAnimemController,
@@ -113,6 +115,11 @@ const eventHandlers = [];
     HistoryAnimeService,
     FollowedAnimeService,
     ListsReproductionAnimeService,
+  ],
+  exports: [
+    ...queryHandlers,
+    ...commandHandlers,
+    { provide: IAnimeFollowedsRepository, useClass: AnimeFollowedsRepository },
   ],
 })
 export class UserModule {}

@@ -13,7 +13,7 @@ export class AddAnimeToFollowedsCommandHandler
     private repository: IAnimeFollowedsRepository,
   ) {}
     execute(command: AddAnimeToFollowed) {
-        const { userId, animeId } = command;
-        return this.repository.addAnimeToFolloweds(userId, animeId);
+        const { animeId, userId } = command;
+        return this.repository.addAnimeToFolloweds(animeId, userId);
   }
 }
