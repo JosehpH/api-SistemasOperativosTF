@@ -12,7 +12,9 @@ import { UserModule } from './user/user.module';
     AuthModule,
     NotificationsModule,
     ReportsModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/livebi'),
+    MongooseModule.forRoot(
+      'mongodb+srv://admin:admin@cluster0.3wgeudx.mongodb.net/db_liveBi',
+    ),
     CommentsModule,
     UserModule,
   ],

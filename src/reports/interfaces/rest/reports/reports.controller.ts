@@ -1,39 +1,15 @@
-import { Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { CreateReportDto } from 'src/reports/application/dtos/CreateReportDto';
+import { ReportsService } from 'src/reports/application/services/reports/reports.service';
 
 @Controller('reports')
 @ApiTags('Reports')
 export class ReportsController {
-  @Get('/:userId')
-  @ApiOperation({ summary: 'Get reports by user id' })
-  async getReportsByUserId() {
-    return null;
-  }
-  @Get('/:animeId')
-  @ApiOperation({ summary: 'Get reports by anime id' })
-  async getReportsByAnimeId() {
-    return null;
-  }
-
-  @Get('/:episodeId')
-  @ApiOperation({ summary: 'Get reports by episode id' })
-  async getReportsByEpisodeId() {
-    return null;
-  }
-  @Get('/:commentId')
-  @ApiOperation({ summary: 'Get reports by comment id' })
-  async getReportsByCommentId() {
-    return null;
-  }
-
+  constructor(private reportsService: ReportsService) {}
   @Post()
   @ApiOperation({ summary: 'Create report' })
-  async createReport() {
-    return null;
-  }
-  @Delete('/:reportId')
-  @ApiOperation({ summary: 'Delete report' })
-  async deleteReport() {
-    return null;
+  async createReport(@Body() report: CreateReportDto) {
+    return this.reportsService.createReport(report);
   }
 }

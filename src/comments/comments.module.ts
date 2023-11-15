@@ -13,6 +13,7 @@ import { CommentsController } from './interfaces/rest/comments/comments.controll
 import { CommentsRepository } from './infraestructure/repositories/CommentsRepository';
 import { ICommentsRepository } from './domain/repositories/ICommentsRepository';
 import { CqrsModule } from '@nestjs/cqrs';
+import { CommentServiceService } from './application/services/comment-service/comment-service.service';
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { CqrsModule } from '@nestjs/cqrs';
   providers: [
     {
       provide: ICommentsRepository, useClass: CommentsRepository
-    }
+    },
+    CommentServiceService
   ],
 })
 export class CommentsModule {}
