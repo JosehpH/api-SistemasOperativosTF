@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
 import { Model, Types } from 'mongoose';
-import { Inject } from "@nestjs/common";
 import { CommentAnime } from "src/comments/domain/aggregates/CommentAnime";
 import { CommentEpisode } from "src/comments/domain/aggregates/CommentEpisode";
 import { ICommentsRepository } from "src/comments/domain/repositories/ICommentsRepository";
 import { CommentAnimeEntity } from "../persistence/CommentAnimeEntity";
 import { CommentEpisodeEntity } from '../persistence/CommentEpisodeEntity';
 import { InjectModel } from '@nestjs/mongoose';
+import { types } from 'util';
 
 export class CommentsRepository implements ICommentsRepository{
     constructor(
@@ -38,7 +38,7 @@ export class CommentsRepository implements ICommentsRepository{
     }
     deleteCommentAnime(commentId: string) {
         try {
-            this.commentAnimeRepo.deleteOne({_id:commentId});
+            this.commentAnimeRepo.deleteOne({_id:new Types.ObjectId(commentId)});
         } catch (error) {
             throw new Error(error);
         }
@@ -68,7 +68,7 @@ export class CommentsRepository implements ICommentsRepository{
     }
     deleteCommentEpisode(commentId: string) {
         try {
-            return this.commentEpisodeRepo.deleteOne({_id:commentId});   
+             this.commentEpisodeRepo.deleteOne({_id: new Types.ObjectId(commentId)});   
         }
         catch (error) {
             throw new Error(error);
