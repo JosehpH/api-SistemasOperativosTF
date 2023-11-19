@@ -25,6 +25,7 @@ export class AuthenticateAccountCommandHandler
     const payload = { email: user.email };
     return {
       access_token: this.jwtService.sign(payload),
+      user_id: user.id,
     };
   }
   async comparePasswords(plainTextPassword: string, hashedPassword: string) {

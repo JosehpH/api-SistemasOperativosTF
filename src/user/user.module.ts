@@ -8,7 +8,7 @@ import { AnimeFavoriteEntity, AnimeFavoriteSchema } from './infraestructure/pers
 import { AnimeFollowedEntity, AnimeFollowedSchema } from './infraestructure/persistence/AnimeFollowedEntity';
 import { AnimeListReproductionEntity, AnimeListReproductionSchema } from './infraestructure/persistence/AnimeListReproductionEntity';
 import { ListReproductionEntity, ListReproductionSchema } from './infraestructure/persistence/ListReproductionEntity';
-import { UserProfileEntity } from './infraestructure/persistence/UserProfileEntity';
+import { UserProfileEntity, UserProfileSchema } from './infraestructure/persistence/UserProfileEntity';
 import { HistoryAnimeEntity, HistoryAnimeSchema } from './infraestructure/persistence/HistoryAnimeEntity';
 import { AnimeFavoritesRepository } from './infraestructure/repositories/AnimeFavoritesRepository';
 import { IAnimeAndListReproductionRepository } from './domain/repositories/IAnimeAndListReproductionRepository';
@@ -49,6 +49,7 @@ import { FollowedAnimeService } from './application/services/followed-anime/foll
 import { ListsReproductionAnimeService } from './application/services/lists-reproduction-anime/lists-reproduction-anime.service';
 import { CqrsModule } from '@nestjs/cqrs';
 import { GetUsersByAnimeIdQueryHandler } from './application/handlers/queries/GetUsersByAnimeIdQueryHandler';
+import { UserProfilesController } from './intefaces/rest/user-profiles/user-profiles.controller';
 
 const commandHandlers = [
   AddAnimeToFavoritesCommandHandler,
@@ -83,7 +84,7 @@ const eventHandlers = [];
         schema: AnimeListReproductionSchema,
       },
       { name: ListReproductionEntity.name, schema: ListReproductionSchema },
-      { name: UserProfileEntity.name, schema: AnimeFavoriteSchema },
+      { name: UserProfileEntity.name, schema: UserProfileSchema },
       { name: HistoryAnimeEntity.name, schema: HistoryAnimeSchema },
     ]),
     AuthModule,
@@ -94,6 +95,7 @@ const eventHandlers = [];
     HistoryAnimeController,
     FollowedAnimeController,
     FavoritesAnimmeController,
+    UserProfilesController,
   ],
   providers: [
     { provide: IAnimeFavoritesRepository, useClass: AnimeFavoritesRepository },

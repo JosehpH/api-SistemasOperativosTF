@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { AggregateRoot } from '@nestjs/cqrs';
 export class User extends AggregateRoot {
+  public id: string;
   public email: string;
     public password: string;
     

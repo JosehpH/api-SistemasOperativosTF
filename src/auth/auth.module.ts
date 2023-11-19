@@ -32,7 +32,7 @@ export const QueryHandlers = [GetAccountByEmailHandler];
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '86400s' },
     }),
   ],
   controllers: [UserController],

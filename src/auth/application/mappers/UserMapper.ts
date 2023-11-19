@@ -9,8 +9,9 @@ export class UserMapper{
         userEntity.password = user.password;
         return userEntity;
     }
-    static EntityToDomain(user: UserEntity): User{
-        const userDomain:User = new User(user.email, user.password);
+    static EntityToDomain(user: any): User{
+        const userDomain: User = new User(user.email, user.password);
+        userDomain.id = user._id;
         return userDomain;
     }
 }

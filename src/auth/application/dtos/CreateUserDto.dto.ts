@@ -3,7 +3,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEmail, IsStrongPassword, Length } from "class-validator";
 
-export class CreateUserDto{
+export class CreateUserDto {
 
     @ApiProperty({ example: 'herrera@gmail.com' })
     @IsEmail({}, { message: 'Email is invalid' })
@@ -11,16 +11,15 @@ export class CreateUserDto{
     email: string;
 
     @ApiProperty({ example: 'abcd@*1564' })
-    @IsStrongPassword({},{message: 'Password is invalid'})
+    @IsStrongPassword({}, { message: 'Password is invalid' })
     password: string;
 
     @ApiProperty({ example: 'Josehp' })
-    
     first_name: string;
+
     @ApiProperty({example: 'Herrera'})
     last_name: string;
-    @ApiProperty({example: 'Esto es un poco sobre mí...'})
-    bio: string;
-    @ApiProperty({example: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%'})
-    avatar: string;
+
+    @ApiProperty({})
+    avatar: Express.Multer.File;
 }

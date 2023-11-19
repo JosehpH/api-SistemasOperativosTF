@@ -7,8 +7,16 @@ import { AuthenticateAccountCommand } from 'src/auth/application/messages/comman
 @Injectable()
 export class UserService {
   constructor(private commandBus: CommandBus) {}
-  async createAccount(email: string, password: string) {
-    return this.commandBus.execute(new CreateAccountCommand(email, password));
+  async createAccount(
+    email: string,
+    password: string,
+    fullName: string,
+    lastName: string,
+    avatar: string,
+  ) {
+    return this.commandBus.execute(
+      new CreateAccountCommand(email, password, fullName, lastName, avatar),
+    );
   }
   async login(userLoginDto: UserLoginDto) {
     return this.commandBus.execute(

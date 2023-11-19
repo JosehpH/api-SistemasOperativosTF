@@ -6,6 +6,7 @@ import { UserProfileEntity } from '../persistence/UserProfileEntity';
 import { Model } from 'mongoose';
 import { UserEntity } from 'src/auth/infraestructure/persitence/entities/UserEntity';
 import { UserProfileMapper } from 'src/user/application/mappers/UserProfileMapper';
+import { Logger } from '@nestjs/common';
 
 export class UserProfileRepository implements IUserProfileRepository {
   constructor(
@@ -16,11 +17,11 @@ export class UserProfileRepository implements IUserProfileRepository {
   getUserProfileByUserId(userId: string) {
     return this.media.findOne({ user: { _id: userId } }).exec();
   }
-
   async createUserProfile(userProfile: UserProfile) {
+    Logger.log('Creando perfil de usuario en el repositorio');
     const userProfileAdd = await this.media.create(
       UserProfileMapper.toEntity(userProfile)
     );
-    userProfileAdd.save();
+    return userProfileAdd.save();
   }
 }
