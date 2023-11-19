@@ -29,7 +29,7 @@ const queryHandlers = [GetNotificationsByUserIdQueryHandler, GetUsersByAnimeIdQu
       },
     ]),
     CqrsModule,
-    UserModule
+    UserModule,
   ],
   controllers: [NotificationsController],
   providers: [
@@ -37,6 +37,14 @@ const queryHandlers = [GetNotificationsByUserIdQueryHandler, GetUsersByAnimeIdQu
     ...commandHandlers,
     ...queryHandlers,
   ],
-  exports: [...commandHandlers],
+  exports: [
+    ...commandHandlers,
+    MongooseModule.forFeature([
+      {
+        name: NotificationEntity.name,
+        schema: NotificationSchema,
+      },
+    ]),
+  ],
 })
 export class NotificationsModule {}

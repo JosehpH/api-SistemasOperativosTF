@@ -11,6 +11,10 @@ import { AccountCreatedHandler } from './application/handlers/events/AccountCrea
 import { GetAccountByEmailHandler } from './application/handlers/queries/GetAccountByEmailHandler';
 import { UserController } from './interfaces/rest/user/user.controller';
 import { UserEntity, UserSchema } from './infraestructure/persitence/entities/UserEntity';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { JwtModule } from '@nestjs/jwt';
+import { jwtConstants } from './constants';
+import { AuthGuard } from './guards/auth/auth.guard';
 
 export const CommandHandlers = [
   CreateAccountHandler,
@@ -25,6 +29,11 @@ export const QueryHandlers = [GetAccountByEmailHandler];
   imports: [
     MongooseModule.forFeature([{ name: UserEntity.name, schema: UserSchema }]),
     CqrsModule,
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '60s' },
+    }),
   ],
   controllers: [UserController],
   providers: [
@@ -32,8 +41,12 @@ export const QueryHandlers = [GetAccountByEmailHandler];
     ...CommandHandlers,
     ...EventHandlers,
     ...QueryHandlers,
-    UserEntity
+    UserEntity,
+    AuthGuard
   ],
-  exports: [MongooseModule.forFeature([{ name: UserEntity.name, schema: UserSchema }])
-],})
+  exports: [
+    MongooseModule.forFeature([{ name: UserEntity.name, schema: UserSchema }]),
+    AuthGuard
+  ],
+})
 export class AuthModule {}
