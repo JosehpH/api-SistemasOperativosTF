@@ -28,7 +28,7 @@ export class UserController {
     private readonly queryBus: QueryBus,
     private readonly commandBus: CommandBus,
   ) {}
-  @Throttle({ default: { limit: 3, ttl: 60 } })
+  //@Throttle({ default: { limit: 3, ttl: 60 } })
   @UseInterceptors(FileInterceptor('avatar'))
   @Post('register')
   @ApiOperation({ summary: 'Crea un nuevo user' })
@@ -49,7 +49,7 @@ export class UserController {
     );
   }
 
-  @Throttle({ default: { limit: 5, ttl: 60 } })
+  //@Throttle({ default: { limit: 5, ttl: 60 } })
   @Post('login')
   @ApiOperation({ summary: 'Login user', description: 'Logeo del usuario' })
   async authAccount(@Body() body: UserLoginDto) {
