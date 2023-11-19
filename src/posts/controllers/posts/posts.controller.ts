@@ -16,7 +16,7 @@ export class PostsController {
 
   @Post()
   @UseInterceptors(FileInterceptor('Resource'))
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   createPost(
     @UploadedFile() file: Express.Multer.File,
     @Body() postDto: CreatePostDto,

@@ -12,7 +12,7 @@ export class CommentsPostController {
   constructor(private commentService: CommentsPostService) {}
   @Post()
   @UseInterceptors(FileInterceptor('resource'))
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   createComment(@UploadedFile() file: Express.Multer.File, @Body() commentDto: CreateCommentPostDto) {
     commentDto.resource = file;
     return this.commentService.createComment(commentDto);
